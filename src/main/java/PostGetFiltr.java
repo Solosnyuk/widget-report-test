@@ -1,4 +1,3 @@
-import io.qameta.allure.internal.shadowed.jackson.annotation.JsonIgnoreProperties;
 
 public class PostGetFiltr {
     private Integer id;

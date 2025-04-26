@@ -1,39 +1,19 @@
 public class PutGetDash {
-        private int widgetId;
-        private String widgetName;
-        private String widgetType;
+    private String message;
 
-        public PutGetDash() {
-        }
+    public PutGetDash() {
 
-        public PutGetDash(int widgetId, String widgetName, String widgetType) {
-            this.widgetId = widgetId;
-            this.widgetName = widgetName;
-            this.widgetType = widgetType;
-        }
+    }
 
-        public int getWidgetId() {
-            return widgetId;
-        }
+    public PutGetDash(String massage) {
+        this.message = massage;
+    }
 
-        public void setWidgetId(int widgetId) {
-            this.widgetId = widgetId;
-        }
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-        public String getWidgetName() {
-            return widgetName;
-        }
-
-        public void setWidgetName(String widgetName) {
-            this.widgetName = widgetName;
-        }
-
-        public String getWidgetType() {
-            return widgetType;
-        }
-
-        public void setWidgetType(String widgetType) {
-            this.widgetType = widgetType;
-        }
+    public String getMessage() {
+        return message;
     }
 }

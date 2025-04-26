@@ -1,6 +1,5 @@
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.testng.annotations.BeforeClass;
 
 public class BaseApiTest {
 
@@ -11,11 +10,11 @@ public class BaseApiTest {
     public static final String BASE_UPDATED_WIDGET = "/dashboard/"; //+новый id
     public static final String PROJECT_NAME = "default_personal";
     //вставьте действующий токен
-    public static final String ACCESS_TOKEN = "token";
+    public static final String ACCESS_TOKEN = "bibb_FMnPt4yrRzy_u1epDlrRGn9ZpZDGpJ_6hqT0KModPT5bi4gg36poK38ugEeHVtK0";
     // введите тип фильтра
     public static String typeFiltr = "launch";
     //введите тип виджета
-    public static String widgerType = "launchesTable";
+    public static String widgetType = "launchesTable";
     public String dashboardGenerateName = GenerateName.getRandomNameDash("Bob_");
     public String filtrGenerateName = GenerateName.getRandomNameDash("Jo_");
 
@@ -27,6 +26,7 @@ public class BaseApiTest {
                 .body(postSendWidget)
                 .post()
                 .then()
+                .log().all()
                 .extract()
                 .as(PostGetDash.class);
     }
@@ -39,6 +39,7 @@ public class BaseApiTest {
                 .body(postSendFiltr)
                 .post()
                 .then()
+                .log().all()
                 .extract()
                 .as(PostGetFiltr.class);
     }
@@ -51,19 +52,26 @@ public class BaseApiTest {
                 .body(postSendWidget)
                 .post()
                 .then()
+                .log().all()
                 .extract()
                 .as(PostGetWidget.class);
     }
 
-    public PutGetDash putDashboard(PutGetDash putGetDash) {
+    public PutGetDash putDashboard(PutSendDash putSendDash, Integer getNewIdWidget) {
         return RestAssured.given()
-                .baseUri(BASE_URL + PROJECT_NAME +BASE_ADD_DASHBOARD + "add")
+                .baseUri(BASE_URL + PROJECT_NAME + BASE_ADD_DASHBOARD + getNewIdWidget + "/add")
                 .header("Authorization", "Bearer " + ACCESS_TOKEN)
                 .contentType(ContentType.JSON)
-                .body(putGetDash)
+                .body(putSendDash)
                 .put()
                 .then()
+                .log().all()
+                .statusCode(200)
                 .extract()
                 .as(PutGetDash.class);
     }
+
+
+
+
 }
