@@ -19,25 +19,72 @@ public class NewWidgetTest extends BaseApiTest{
         getNewIdWidget = postGetDash.getId();
 
         //создание фильтра
-        PostSendFiltr postSendFiltr = new PostSendFiltr("test filtr", filtrGenerateName, typeFiltr);
+        Condition condition0 = new Condition("name", "cnt", lauchGenerateName);
+        Order order1 = new Order("number", false);
+        //добавление в списки
+        List<Condition> conditions = new ArrayList<>();
+        conditions.add(condition0);
+        List<Order> orders = new ArrayList<>();
+        orders.add(order1);
+
+        PostSendFiltr postSendFiltr = new PostSendFiltr(
+                "dis test",
+                filtrGenerateName,
+                typeFiltr,
+                conditions,
+                orders);
+
         PostGetFiltr postGetFiltr = sendFiltr(postSendFiltr);
         getNewIdFiltr = postGetFiltr.getId();
 
         //создание виджета
-        List<String> filterIds = Collections.singletonList(getNewIdWidget.toString());
-        List<Filter> filters = new ArrayList<>();
+        Integer getFilterIds0 = getNewIdFiltr;
+        List<Integer> getFilterIds = new ArrayList<>();
+        getFilterIds.add(getFilterIds0);
 
-        Filter filter = new Filter();
-            filter.setValue(getNewIdWidget.toString());
-            filter.setName(filtrGenerateName);
-            filters.add(filter);
+        List<String> contentFields = new ArrayList<>();
+        contentFields.add("name");
+        contentFields.add("number");
+        contentFields.add("status");
+        contentFields.add("statistics$executions$total");
+        contentFields.add("statistics$executions$passed");
+        contentFields.add("statistics$executions$failed");
+        contentFields.add("statistics$executions$skipped");
+        contentFields.add("statistics$defects$product_bug$pb001");
+        contentFields.add("statistics$defects$automation_bug$ab001");
+        contentFields.add("statistics$defects$system_issue$si001");
+        contentFields.add("statistics$defects$to_investigate$ti001");
+        contentFields.add("attributes");
+        contentFields.add("user");
+        contentFields.add("startTime");
+        contentFields.add("endTime");
+        contentFields.add("description");
 
-        PostSendWidget postSendWidget = new PostSendWidget(widgetType, filterIds, filters);
+        ContentParameters parameters = new ContentParameters(contentFields, 50);
+
+        PostSendWidget postSendWidget = new PostSendWidget(
+                filtrGenerateName,
+                "launchesTable",
+                parameters,
+                getFilterIds
+                );
+
         PostGetWidget postGetWidget = sendWidget(postSendWidget);
         getNewIdWidgetFiltr = postGetWidget.getId();
 
         //обновление виджета
-        PutSendDash putSendDash = new PutSendDash(getNewIdWidgetFiltr, filtrGenerateName, widgetType);
+        WidgetSize widgetSize = new WidgetSize(6,7);
+        WidgetPosition widgetPosition = new WidgetPosition(0, 0);
+
+        AddWidget addWidget = new AddWidget(
+                filtrGenerateName,
+                getNewIdWidgetFiltr,
+                "launchesTable",
+                widgetSize,
+                widgetPosition);
+
+        PutSendDash putSendDash = new PutSendDash(addWidget);
+
         PutGetDash putGetDash = putDashboard(putSendDash, getNewIdWidget);
         messagePutWidget = putGetDash.getMessage();
 

@@ -10,16 +10,18 @@ public class BaseApiTest {
     public static final String BASE_UPDATED_WIDGET = "/dashboard/"; //+новый id
     public static final String PROJECT_NAME = "default_personal";
     //вставьте действующий токен
-    public static final String ACCESS_TOKEN = "bibb_FMnPt4yrRzy_u1epDlrRGn9ZpZDGpJ_6hqT0KModPT5bi4gg36poK38ugEeHVtK0";
+    public static final String ACCESS_TOKEN = "bbbb_dJVnbFOoTLmAiCbpGs1ccHX3Dix5B8y4vgxQfi04fW9UqvSrbiEjdC-ksWO5H6ut";
     // введите тип фильтра
     public static String typeFiltr = "launch";
     //введите тип виджета
     public static String widgetType = "launchesTable";
-    public String dashboardGenerateName = GenerateName.getRandomNameDash("Bob_");
-    public String filtrGenerateName = GenerateName.getRandomNameDash("Jo_");
+    public String dashboardGenerateName = GenerateName.getRandomNameDash("dash_");
+    public String filtrGenerateName = GenerateName.getRandomNameDash("filtr_");
+    public String lauchGenerateName = GenerateName.getRandomNameDash("launch_");
 
     public PostGetDash sendDashboard(PostSendDash postSendWidget) {
         return RestAssured.given()
+                .log().all()
                 .baseUri(BASE_URL + PROJECT_NAME + BASE_ADD_DASHBOARD)
                 .header("Authorization", "Bearer " + ACCESS_TOKEN)
                 .contentType(ContentType.JSON)
@@ -33,6 +35,7 @@ public class BaseApiTest {
 
     public PostGetFiltr sendFiltr(PostSendFiltr postSendFiltr) {
         return RestAssured.given()
+                .log().all()
                 .baseUri(BASE_URL + PROJECT_NAME + BASE_ADD_FILTR)
                 .header("Authorization", "Bearer " + ACCESS_TOKEN)
                 .contentType(ContentType.JSON)
@@ -46,6 +49,7 @@ public class BaseApiTest {
 
     public PostGetWidget sendWidget(PostSendWidget postSendWidget) {
         return RestAssured.given()
+                .log().all()
                 .baseUri(BASE_URL + PROJECT_NAME + BASE_ADD_WIDGET)
                 .header("Authorization", "Bearer " + ACCESS_TOKEN)
                 .contentType(ContentType.JSON)
@@ -59,6 +63,7 @@ public class BaseApiTest {
 
     public PutGetDash putDashboard(PutSendDash putSendDash, Integer getNewIdWidget) {
         return RestAssured.given()
+                .log().all()
                 .baseUri(BASE_URL + PROJECT_NAME + BASE_ADD_DASHBOARD + getNewIdWidget + "/add")
                 .header("Authorization", "Bearer " + ACCESS_TOKEN)
                 .contentType(ContentType.JSON)
@@ -70,8 +75,4 @@ public class BaseApiTest {
                 .extract()
                 .as(PutGetDash.class);
     }
-
-
-
-
 }

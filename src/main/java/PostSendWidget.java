@@ -1,17 +1,31 @@
 import java.util.List;
+import java.util.Map;
 
 public class PostSendWidget {
+    private String name;
     private String widgetType;
-    private List<String> filterIds;
-    private List<Filter> filters;
+    private ContentParameters contentParameters;
+    private List<Integer> filterIds;
 
     public PostSendWidget() {
     }
 
-    public PostSendWidget(String widgetType, List<String> filterIds, List<Filter> filters) {
+    public PostSendWidget(String name,
+                          String widgetType,
+                          ContentParameters contentParameters,
+                          List<Integer> filterIds) {
+        this.name = name;
         this.widgetType = widgetType;
+        this.contentParameters = contentParameters;
         this.filterIds = filterIds;
-        this.filters = filters;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getWidgetType() {
@@ -22,19 +36,48 @@ public class PostSendWidget {
         this.widgetType = widgetType;
     }
 
-    public List<String> getFilterIds() {
+    public ContentParameters getContentParameters() {
+        return contentParameters;
+    }
+
+    public void setContentParameters(ContentParameters contentParameters) {
+        this.contentParameters = contentParameters;
+    }
+
+    public List<Integer> getFilterIds() {
         return filterIds;
     }
 
-    public void setFilterIds(List<String> filterIds) {
+    public void setFilterIds(List<Integer> filterIds) {
         this.filterIds = filterIds;
     }
+}
 
-    public List<Filter> getFilters() {
-        return filters;
+class ContentParameters {
+    private List<String> contentFields;
+    private Integer itemsCount;
+
+    public ContentParameters() {
     }
 
-    public void setFilters(List<Filter> filters) {
-        this.filters = filters;
+    public ContentParameters(List<String> contentFields, Integer itemsCount) {
+        this.contentFields = contentFields;
+        this.itemsCount = itemsCount;
+    }
+
+    public List<String> getContentFields() {
+        return contentFields;
+    }
+
+    public void setContentFields(List<String> contentFields) {
+        this.contentFields = contentFields;
+    }
+
+    public Integer getItemsCount() {
+        return itemsCount;
+    }
+
+    public void setItemsCount(Integer itemsCount) {
+        this.itemsCount = itemsCount;
     }
 }

@@ -1,39 +1,150 @@
+import java.util.Map;
+
 public class PutSendDash {
-        private Integer widgetId;
-        private String widgetName;
-        private String widgetType;
+    private AddWidget addWidget;
 
-        public PutSendDash() {
-        }
+    // Конструкторы
+    public PutSendDash() {
+    }
 
-        public PutSendDash(Integer widgetId, String widgetName, String widgetType) {
-            this.widgetId = widgetId;
-            this.widgetName = widgetName;
-            this.widgetType = widgetType;
-        }
+    public PutSendDash(AddWidget addWidget) {
+        this.addWidget = addWidget;
+    }
 
-        public Integer getWidgetId() {
-            return widgetId;
-        }
+    // Геттеры и сеттеры
+    public AddWidget getAddWidget() {
+        return addWidget;
+    }
 
-        public void setWidgetId(int widgetId) {
-            this.widgetId = widgetId;
-        }
+    public void setAddWidget(AddWidget addWidget) {
+        this.addWidget = addWidget;
+    }
+}
 
-        public String getWidgetName() {
-            return widgetName;
-        }
+class AddWidget {
+    private String widgetName;
+    private Integer widgetId;
+    private String widgetType;
+    private WidgetSize widgetSize;
+    private WidgetPosition widgetPosition;
+    private Map<String, Object> widgetOptions;
 
-        public void setWidgetName(String widgetName) {
-            this.widgetName = widgetName;
-        }
+    public AddWidget() {
+    }
 
-        public String getWidgetType() {
-            return widgetType;
-        }
+    public AddWidget(String widgetName, Integer widgetId, String widgetType,
+                     WidgetSize widgetSize, WidgetPosition widgetPosition) {
+        this.widgetName = widgetName;
+        this.widgetId = widgetId;
+        this.widgetType = widgetType;
+        this.widgetSize = widgetSize;
+        this.widgetPosition = widgetPosition;
 
-        public void setWidgetType(String widgetType) {
-            this.widgetType = widgetType;
-        }
+    }
 
+    public String getWidgetName() {
+        return widgetName;
+    }
+
+    public void setWidgetName(String widgetName) {
+        this.widgetName = widgetName;
+    }
+
+    public Integer getWidgetId() {
+        return widgetId;
+    }
+
+    public void setWidgetId(Integer widgetId) {
+        this.widgetId = widgetId;
+    }
+
+    public String getWidgetType() {
+        return widgetType;
+    }
+
+    public void setWidgetType(String widgetType) {
+        this.widgetType = widgetType;
+    }
+
+    public WidgetSize getWidgetSize() {
+        return widgetSize;
+    }
+
+    public void setWidgetSize(WidgetSize widgetSize) {
+        this.widgetSize = widgetSize;
+    }
+
+    public WidgetPosition getWidgetPosition() {
+        return widgetPosition;
+    }
+
+    public void setWidgetPosition(WidgetPosition widgetPosition) {
+        this.widgetPosition = widgetPosition;
+    }
+
+    public Map<String, Object> getWidgetOptions() {
+        return widgetOptions;
+    }
+
+    public void setWidgetOptions(Map<String, Object> widgetOptions) {
+        this.widgetOptions = widgetOptions;
+    }
+}
+
+class WidgetSize {
+    private Integer width;
+    private Integer height;
+
+    public WidgetSize() {
+    }
+
+    public WidgetSize(Integer width, Integer height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+}
+
+class WidgetPosition {
+    private Integer positionX;
+    private Integer positionY;
+
+    public WidgetPosition() {
+    }
+
+    public WidgetPosition(Integer positionX, Integer positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+    }
+
+    public Integer getPositionX() {
+        return positionX;
+    }
+
+    public void setPositionX(Integer positionX) {
+        this.positionX = positionX;
+    }
+
+    public Integer getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionY(Integer positionY) {
+        this.positionY = positionY;
+    }
 }
